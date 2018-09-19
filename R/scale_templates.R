@@ -11,7 +11,6 @@ agree_scale <- function(reverse = FALSE){
   
 }
 
-
 often_scale <- function(reverse = FALSE){
   
   lvl <- c("Very Often", "Often", "Sometimes", "Rarely", "Never")
@@ -24,23 +23,18 @@ often_scale <- function(reverse = FALSE){
   
 }
 
-
-
 response_scale <- function(scale = NULL, reverse = FALSE){
   
   if(scale == "agree"){
-    lvl <- c("Strongly Agree", "Agree", "Neither Agree or Disagree", 
-           "Disagree", "Strongly Disagree")
+    agree_scale(reverse)
   }
   
   if(scale == "often"){
-    lvl <- c("Very Often", "Often", "Sometimes", "Rarely", "Never")
+    often_scale(reverse)
   }
   
-  if(reverse){
-   lvl <- rev(lvl)
-  }
-
   return(lvl)
   
 }
+
+## Best way to incorporate functions into a general function? i.e., how to generalize formals of response scale?
