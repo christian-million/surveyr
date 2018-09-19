@@ -2,6 +2,7 @@
 # Stolen From https://github.com/dgrtwo/stacksurveyr/blob/master/R/stack_multi.R
 
 multi <- function(columns = NULL) {
+  
   multi_response_qs <- schema$q_varname[schema$q_type == "multi"]
 
   if (is.null(columns)) {

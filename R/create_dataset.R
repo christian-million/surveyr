@@ -26,4 +26,4 @@ clean <- raw %>%
         select(-c(roles_identified_desc))
 
 # Write to file
-write.csv(clean, file = "data/clean/svdg_clean.csv")
+write.csv(clean, file = "data/clean/svdg_clean.csv", row.names = FALSE)
