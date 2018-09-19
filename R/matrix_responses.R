@@ -2,17 +2,31 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-tidy_clean <- clean %>%
-              gather("questions", "answers", roles_assumed:final_comments)
+clean <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
 
-q_ret <- tidy_clean %>% filter(grepl("^ret", questions))
+get_matrix_questions<- function(data, lead_chars, scale = NULL){
+  
+  dataFrame <- data %>%
+               dplyr::select(dplyr::starts_with(lead_chars)) %>%
+               tidyr::gather(questions, responses, dplyr::starts_with(lead_chars))
+  
+  if(!is.null(scale)){
+   dataFrame$responses <- factor(dataFrame$responses, levels = response_scale(scale))
+  }
+              
+  dataFrame
+}
 
-q_ret$answers <- factor(q_ret$answers,
-                        levels = agree_scale())
+## Examples
+#get_matrix_questions(clean, "ret_", scale = "agree")%>%
+#  filter(!is.na(responses))
 
-q_ret <- q_ret%>%filter(!is.na(answers))
+plot_matrix_questions <- function(data){
+  ggplot2::ggplot(data, ggplot2::aes(x = responses))+
+    ggplot2::geom_bar()+
+    ggplot2::facet_wrap(~ questions)+
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1))
+}
 
-ggplot(q_ret, aes(x = answers))+
-  geom_bar()+
-  facet_wrap(~ questions)+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+## Examples
+#plot_matrix_questions(get_matrix_questions(clean, "ret_", scale = "agree")%>%filter(!is.na(responses)))
