@@ -11,11 +11,7 @@ survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
 # Takes Column Names
 # If no argument, then gets all open ended questions
 
-get_open <- function(data = survey, ...){
-    
-    if(!missing(data)){
-      survey <- data
-    }
+get_open <- function(...){
     
     open_response_qs <- schema$q_varname[schema$q_type == "open"]
     columns <- sapply(substitute(list(...)), deparse)[-1]
