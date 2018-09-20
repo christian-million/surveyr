@@ -9,7 +9,7 @@ library(tidyr)
 # Load Necessary Data
 raw <- read_xlsx("data/raw/svdg_raw.xlsx")
 
-schema <- read_xlsx("data/clean/svdg_schema.xlsx")
+schema <- read.csv("data/clean/svdg_schema.csv", stringsAsFactors = FALSE)
 
 # Rename Variables Using SCHEMA Dataset
 colnames(raw) <-  schema$q_varname

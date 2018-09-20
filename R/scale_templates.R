@@ -26,11 +26,11 @@ often_scale <- function(reverse = FALSE){
 response_scale <- function(scale = NULL, reverse = FALSE){
   
   if(scale == "agree"){
-    agree_scale(reverse)
+  lvl <- agree_scale(reverse)
   }
   
   if(scale == "often"){
-    often_scale(reverse)
+  lvl <- often_scale(reverse)
   }
   
   return(lvl)

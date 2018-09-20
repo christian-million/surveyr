@@ -14,9 +14,9 @@ multi <- function(columns = NULL) {
     }
   }
 
-  clean %>%
-    dplyr::select(id, one_of(columns)) %>%
-    tidyr::gather(q_varname, answer, -id) %>%
-    dplyr::filter(!is.na(answer)) %>%
-    tidyr::unnest(answer = stringr::str_split(answer, ";"))
+  survey %>%
+    dplyr::select(id, dplyr::one_of(columns)) %>%
+    tidyr::gather(q_varname, responses, -id) %>%
+    dplyr::filter(!is.na(responses)) %>%
+    tidyr::unnest(responses = stringr::str_split(responses, ";"))
 }

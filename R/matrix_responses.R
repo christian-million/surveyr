@@ -2,7 +2,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-clean <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
+survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
 
 get_matrix_questions<- function(data, lead_chars, scale = NULL){
   
@@ -18,7 +18,7 @@ get_matrix_questions<- function(data, lead_chars, scale = NULL){
 }
 
 ## Examples
-#get_matrix_questions(clean, "ret_", scale = "agree")%>%
+#get_matrix_questions(survey, "ret_", scale = "agree")%>%
 #  filter(!is.na(responses))
 
 plot_matrix_questions <- function(data){
@@ -29,4 +29,4 @@ plot_matrix_questions <- function(data){
 }
 
 ## Examples
-#plot_matrix_questions(get_matrix_questions(clean, "ret_", scale = "agree")%>%filter(!is.na(responses)))
+#plot_matrix_questions(get_matrix_questions(survey, "ret_", scale = "agree")%>%filter(!is.na(responses)))
