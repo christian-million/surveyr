@@ -14,30 +14,33 @@ survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
 get_open <- function(...){
     
     open_response_qs <- schema$q_varname[schema$q_type == "open"]
-    columns <- sapply(substitute(list(...)), deparse)[-1]
+    
+    columns <- quos(...)
     
     if(length(columns) == 0){
+      
       columns <- open_response_qs
+      
+      out <- survey %>% select(one_of(columns))
+    
+    } else {
+      out <- survey %>% select(!!!columns)
     }
     
-    survey %>%
-        select(one_of(columns))
+   return(out)
 }
 
 #get_open(first_learn, why_join, svdg_actions)
 
-openize <- function(data, column, n = 1){
+openize <- function(column, n = 1){
   
-  open_col <- rlang::enquo(column)
-  dataFrame <- data
+  column1 <- rlang::enquo(column)
   
-  
-  tok_df <- dataFrame %>%
-            dplyr::select(new_col = UQ(open_col))
+  tok_df <- get_open(!!column1)
   
   tok_df <- tok_df %>%
-              dplyr::filter(!is.na(new_col)) %>%
-              tidytext::unnest_tokens(word, new_col, token = "ngrams", n = n) %>%
+              dplyr::filter(!is.na(!!column1)) %>%
+              tidytext::unnest_tokens(word, !!column1, token = "ngrams", n = n) %>%
               dplyr::anti_join(tidytext::stop_words) %>%
               dplyr::count(word, sort = TRUE)
   
@@ -49,8 +52,8 @@ my_wordcloud <- function(data, column, n = 1, ...){
   open_col <- rlang::enquo(column)
   dataFrame <- data
   
-  wordcloud::wordcloud((openize(dataFrame, UQ(open_col), n))$word,
-                       (openize(dataFrame, UQ(open_col), n))$n,
+  wordcloud::wordcloud((openize(UQ(open_col), n))$word,
+                       (openize(UQ(open_col), n))$n,
                        ...)
   }
 
