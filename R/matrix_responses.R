@@ -4,6 +4,10 @@ library(tidyr)
 
 survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
 
+
+## Matrix Questions are just a group of questions with the same response variables and preamble.
+## Structuring them in a matrix saves space and cognitive load for the survey respondent.
+## Consider Changing "Matrix" to something a little more evocative and distinct.
 get_matrix_questions<- function(data, lead_chars, scale = NULL){
   
   dataFrame <- data %>%

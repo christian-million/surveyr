@@ -5,6 +5,7 @@ library(tidytext)
 library(wordcloud)
 
 survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
+schema <- read.csv("data/clean/svdg_schema.csv", stringsAsFactors = FALSE)
 
 ## Get Open Ended Questions
 
@@ -60,5 +61,5 @@ my_wordcloud <- function(data, column, n = 1, ...){
 # Find best way to handle ... arguments passed to sub-functions
 
 #Examples
-#openize(survey, svdg_actions, n=2)
+#openize(svdg_actions, n=2)
 #my_wordcloud(survey, svdg_actions, n = 1, min.freq = 2, max.words = 20)

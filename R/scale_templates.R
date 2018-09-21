@@ -38,3 +38,5 @@ response_scale <- function(scale = NULL, reverse = FALSE){
 }
 
 ## Best way to incorporate functions into a general function? i.e., how to generalize formals of response scale?
+## Also, try to make response scale look to the environment above it 
+## to see if it can grab a unique() list of the responses.

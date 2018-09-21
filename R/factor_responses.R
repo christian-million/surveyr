@@ -1,0 +1,1 @@
+## Handling Factor and/or Ordered Factor Questions
