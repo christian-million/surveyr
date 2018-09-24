@@ -34,3 +34,24 @@ test <- factor_cols(data = factor_df, member_length, ret_skills_recognized,
                                     "6 months -  1 year",
                                     "Butt"),
                                   c(response_scale("agree"), "B")))
+
+
+get_factors <- function(...){
+    factor_response_qs <- schema$q_varname[schema$q_type %in% c("factor", "ordered", "other_factor")]
+    
+    columns <- quos(...)
+    
+    if(length(columns) == 0){
+      
+      columns <- factor_response_qs
+      
+      out <- survey %>% select(one_of(columns))
+    
+    } else {
+      out <- survey %>% select(!!!columns)
+    }
+    
+   return(out) 
+}
+
+#get_factors(member_length)
