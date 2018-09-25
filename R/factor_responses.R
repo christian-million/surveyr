@@ -10,13 +10,26 @@ factor_df <- survey %>%
               select(id, member_length, ret_feel_connected, ret_skills_recognized, non_derby_participation)
 
 # Function to factor columns with levels
-factor_cols <- function(data, ..., lvls = NULL){
+factor_cols <- function(data, ..., lvls){
 
   df <- data
-  
   cols <- sapply(substitute(list(...)),deparse)[-1]
   
-  lvls_lst <- lvls
+  if (missing(lvls)){
+    
+    y <- Map(unique, df[cols])
+    ind <- sapply(y, order)
+    lvls_lst <- Map(function(x, i)unique(as.character(x)[i]), y, ind)
+    
+  } else if(length(lvls) == length(cols)){
+    
+    lvls_lst <- lvls
+    
+  } else {
+    
+   stop("# of Levels Does Not Equal Number of Columns")
+  
+  }
   
   df[cols] <- Map(factor, x = df[cols], levels = lvls_lst)
   
@@ -24,16 +37,11 @@ factor_cols <- function(data, ..., lvls = NULL){
   
 }
 
-#Example
+#Examples
+#test <- factor_cols(data = factor_df, member_length, ret_skills_recognized, lvls = test_lvls)
+#test_lvls <-  list(c("0 - 6 months","6 months -  1 year","1 - 2 years","2 - 3 years","5+ years","Butt"),c(response_scale("agree"), "B"))
+#test <- factor_cols(data = factor_df, member_length, ret_skills_recognized)
 
-test <- factor_cols(data = factor_df, member_length, ret_skills_recognized, 
-                    lvls = list(c("0 - 6 months",
-                                    "1 - 2 years",
-                                    "2 - 3 years",
-                                    "5+ years",
-                                    "6 months -  1 year",
-                                    "Butt"),
-                                  c(response_scale("agree"), "B")))
 
 
 get_factors <- function(...){
