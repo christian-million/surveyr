@@ -30,3 +30,6 @@ I figured I would keep a list of ideas to explore and tasks to accomplish here i
 - ERROR HANDLE ANYTHING AT ALL
 - survey response summary statistic functions. (i.e., response rate, responses per question.)
 - quick visuals to compare response X by response Y (group_by, depending on x and y var_type)
+- change structure to package format, for quick reloads and better workflow
+- clarify goals of package and function
+- comment stuff
