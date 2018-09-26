@@ -6,8 +6,7 @@
   # Then a get_factor_question function with factor_col embedded
 
 library(dplyr)
-survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
-schema <- read.csv("data/clean/svdg_schema.csv", stringsAsFactors = FALSE)
+
 factor_df <- survey %>%
               select(id, 
                      member_length, 

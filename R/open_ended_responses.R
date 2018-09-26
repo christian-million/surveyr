@@ -4,9 +4,6 @@ library(dplyr)
 library(tidytext)
 library(wordcloud)
 
-survey <- read.csv("data/clean/svdg_clean.csv", stringsAsFactors = FALSE)
-schema <- read.csv("data/clean/svdg_schema.csv", stringsAsFactors = FALSE)
-
 ## Get Open Ended Questions
 
 # Takes Column Names
