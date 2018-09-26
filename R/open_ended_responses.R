@@ -28,7 +28,6 @@ get_open <- function(...){
    return(out)
 }
 
-#get_open(first_learn, why_join, svdg_actions)
 
 openize <- function(column, n = 1){
   
@@ -58,5 +57,5 @@ my_wordcloud <- function(data, column, n = 1, ...){
 # Find best way to handle ... arguments passed to sub-functions
 
 #Examples
-#openize(svdg_actions, n=2)
-#my_wordcloud(survey, svdg_actions, n = 1, min.freq = 2, max.words = 20)
+#openize(open1, n=2)
+#my_wordcloud(survey, open1, n = 2, min.freq = 2, max.words = 20)

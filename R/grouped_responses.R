@@ -22,8 +22,6 @@ get_grouped <- function(...){
   return(out)
 }
 
-#get_grouped(Four)
-
 
 plot_grouped_questions <- function(data){
   ggplot2::ggplot(data, ggplot2::aes(x = responses))+
@@ -32,4 +30,3 @@ plot_grouped_questions <- function(data){
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1))
 }
 
-#plot_grouped_questions(get_grouped(Four))

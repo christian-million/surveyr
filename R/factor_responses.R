@@ -7,13 +7,6 @@
 
 library(dplyr)
 
-factor_df <- survey %>%
-              select(id, 
-                     member_length, 
-                     ret_feel_connected, 
-                     ret_skills_recognized, 
-                     non_derby_participation)
-
 # Function to factor columns with levels
 factor_cols <- function(data, ..., lvls){
 
@@ -43,15 +36,11 @@ factor_cols <- function(data, ..., lvls){
   
 }
 
-#Examples
-#test <- factor_cols(data = factor_df, member_length, ret_skills_recognized, lvls = test_lvls)
-#test_lvls <-  list(c("0 - 6 months","6 months -  1 year","1 - 2 years","2 - 3 years","5+ years","Butt"),c(response_scale("agree"), "B"))
-#test <- factor_cols(data = factor_df, member_length, ret_skills_recognized)
 
 get_factors <- function(..., factor_lvls = NULL){
-    factor_response_qs <- schema$q_varname[schema$q_type == "factor" |
-                                           schema$q_type == "ordered" | 
-                                           schema$q_type == "other_factor"]
+    factor_response_qs <- schema$q_varname[schema$q_type == "binary" |
+                                           schema$q_type == "ordinal" | 
+                                           schema$q_type == "categorical"]
     columns <- quos(...)
     
     if(is.null(factor_lvls)){
@@ -83,6 +72,4 @@ get_factors <- function(..., factor_lvls = NULL){
     
    return(out) 
 }
-#levelevel <- list(c(levels(as.factor(test$member_length)), "buns"))
-#test <- get_factors(member_length, factor_lvls = TRUE)
-#get_factors()
+
