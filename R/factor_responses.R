@@ -2,7 +2,7 @@
 
 ## A couple thoughts:
   # Function to factor columns and vary levels
-    #For factor_cols add "add level" argument to add 1 level to end of unique()
+    # For factor_cols add "add level" argument to add 1 level to end of unique()
   # Then a get_factor_question function with factor_col embedded
 
 library(dplyr)
@@ -19,7 +19,7 @@ factor_df <- survey %>%
 factor_cols <- function(data, ..., lvls){
 
   df <- data
-  colnames <- quos(...)
+  colnames <- rlang::quos(...)
   cols <- as.character(sapply(colnames, rlang::quo_get_expr))
   
     if (missing(lvls)){
@@ -50,14 +50,14 @@ factor_cols <- function(data, ..., lvls){
 #test <- factor_cols(data = factor_df, member_length, ret_skills_recognized)
 
 get_factors <- function(..., factor_lvls = NULL){
-    factor_response_qs <- schema$q_varname[schema$q_type %in% c("factor", 
-                                                                "ordered", 
-                                                                "other_factor")]
+    factor_response_qs <- schema$q_varname[schema$q_type == "factor" |
+                                           schema$q_type == "ordered" | 
+                                           schema$q_type == "other_factor"]
     columns <- quos(...)
     
     if(is.null(factor_lvls)){
       fctr <- NULL
-      }else if(is.logical(factor_lvls)){
+      } else if(is.logical(factor_lvls)){
       fctr <- TRUE
       } else if(is.list(factor_lvls)){
       fctr <- "okay"
@@ -76,13 +76,14 @@ get_factors <- function(..., factor_lvls = NULL){
     
     if(!is.null(fctr)){
       if(fctr == TRUE){
-      out <- factor_cols(data=out, !!!columns)
+      out <- factor_cols(data = out, !!!columns)
       } else {
-      out <- factor_cols(data=out, !!!columns, lvls = factor_lvls)
+      out <- factor_cols(data = out, !!!columns, lvls = factor_lvls)
       }
     }
     
    return(out) 
 }
-levelevel <- list(c(levels(as.factor(test$member_length)), "buns"))
-test <- get_factors(member_length, factor_lvls = TRUE)
+#levelevel <- list(c(levels(as.factor(test$member_length)), "buns"))
+#test <- get_factors(member_length, factor_lvls = TRUE)
+#get_factors()
