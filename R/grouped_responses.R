@@ -2,23 +2,23 @@
 
 ## Start with just grouped "factor" questions. Then, incorporate other response types.
 
-library(dplyr)
-library(tidyr)
+#library(dplyr)
+#library(tidyr)
 
 get_grouped <- function(...){
-  
+
   colnames <- rlang::quos(...)
-  
+
   cols <- as.character(sapply(colnames, rlang::quo_get_expr))
-  
+
   grouped_cols <- schema$q_varname[schema$q_group %in% cols]
-  
-  out <- survey %>% 
+
+  out <- survey %>%
           dplyr::select(one_of(grouped_cols))%>%
           tidyr::gather(key = "questions", value = "responses")
-  
+
   out <- factor_cols(out, responses, lvls = list(agree_scale()))
-  
+
   return(out)
 }
 
