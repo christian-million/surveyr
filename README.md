@@ -33,3 +33,13 @@ I figured I would keep a list of ideas to explore and tasks to accomplish here i
 - change structure to package format, for quick reloads and better workflow
 - clarify goals of package and function
 - comment stuff
+
+# Oh, crap.
+
+This [package](https://github.com/andrie/surveydata) pretty much captured the essence of where I wanted this package to go (and does it so much more elegantly). So maybe I can incorporate it's structure in order to add onto things like:
+
+- Handling Open Ended Questions
+- More plots
+- Tidy Eval (So we don't have to use quotes)
+
+Well, we'll see what happens moving forward. At least I am learning a lot.
