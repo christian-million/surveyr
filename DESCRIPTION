@@ -1,0 +1,11 @@
+Package: surveyr
+Date: 2018-09-27
+Title: Intuitive Survey EDA
+Version: 0.0.0.9000
+Authors@R: person("Christian", "Million", email = "christianmillion93@gmail.com", role = c("aut", "cre"))
+Description: Currently, these are just functions to help me explore some personal survey data.
+Depends: R (>= 3.5.1)
+License: GPL-2|GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr
