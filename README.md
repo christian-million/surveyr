@@ -42,4 +42,4 @@ This [package](https://github.com/andrie/surveydata) pretty much captured the es
 - More plots
 - Tidy Eval (So we don't have to use quotes)
 
-Well, we'll see what happens moving forward. At least I am learning a lot.
+Well, we'll see what happens moving forward. At least I am learning a lot!
