@@ -1,5 +1,5 @@
-survey <- data.frame(id = 1:50,
-                     gender = sample(c("M","F"), size =50, replace = TRUE),
+sample_survey <- data.frame(id = 1:50,
+                     morf = sample(c("M","F"), size =50, replace = TRUE),
                      age    = sample(c(18:65), size = 50, replace = TRUE),
                      agree1 = sample(agree_scale(), size = 50, replace = TRUE),
                      agree2 = sample(c(agree_scale(),NA), size = 50, replace = TRUE),
@@ -13,8 +13,8 @@ survey <- data.frame(id = 1:50,
                      factor = sample(paste0("opt", 1:5), size = 50, replace = TRUE),
                      stringsAsFactors = FALSE)
 
-schema <- data.frame(q_num = 1:length(survey),
-                     q_varname = names(survey),
+sample_schema <- data.frame(q_num = 1:length(sample_survey),
+                     q_varname = names(sample_survey),
                      q_type = c("meta", "binary", "interval", rep("ordinal", 5), rep("open", 2),
                                 "categorical", "multicat", "categorical"),
                      q_other = c(rep(0,10),1,0,0),
@@ -47,5 +47,5 @@ schema <- data.frame(q_num = 1:length(survey),
                                         "Choose One"),
                      stringsAsFactors = FALSE)
 
-# write.csv(survey, "data/sample/sample_survey.csv", row.names = FALSE)
-# write.csv(schema, "data/sample/sample_schema.csv", row.names = FALSE)
+devtools::use_data(sample_survey, overwrite = TRUE)
+devtools::use_data(sample_schema, overwrite = TRUE)
