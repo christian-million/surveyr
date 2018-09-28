@@ -1,6 +1,6 @@
-# svdg_survey
+# surveyr
 
-Functions to ease summarizing the SVDG Member Survey results.
+Functions to help quickly explore survey data.
 
 # Motivation
 
@@ -16,25 +16,7 @@ In summmary, to reduce the *extraordinarily taxing* reconceptualization involved
 
 Inspired by [David Robinson's](http://varianceexplained.org/) [stacksurveyr package](https://github.com/dgrtwo/stacksurveyr), these functions work on survey data structured as a dataframe in tandem with a "survey schema" which defines the variable types, question names, and other details.
 
-I'm using SVDG's Member Survey as an example data set on which to create these functions, hence the repo name.
-
-# To Do:
-
-I figured I would keep a list of ideas to explore and tasks to accomplish here in the README until I make enough progress to turn this bad boy into a solid, stand-alone, personal package.
-
-- schema structure creator functions? Oooooo.
-- standardize variable name usage.
-- make function names more evocative, with standard verbs and structure.
-- make `response_scales` return the `unique` of the argument, if response_type is factor/ordered and scale arg not supplied.
-- handle multiple arguments to `openize`
-- ERROR HANDLE ANYTHING AT ALL
-- survey response summary statistic functions. (i.e., response rate, responses per question.)
-- quick visuals to compare response X by response Y (group_by, depending on x and y var_type)
-- change structure to package format, for quick reloads and better workflow
-- clarify goals of package and function
-- comment stuff
-
-# Oh, crap.
+## Oh, crap.
 
 This [package](https://github.com/andrie/surveydata) pretty much captured the essence of where I wanted this package to go (and does it so much more elegantly). So maybe I can incorporate it's structure in order to add onto things like:
 
@@ -43,3 +25,18 @@ This [package](https://github.com/andrie/surveydata) pretty much captured the es
 - Tidy Eval (So we don't have to use quotes)
 
 Well, we'll see what happens moving forward. At least I am learning a lot!
+
+# To Do:
+
+I figured I would keep a list of ideas to explore and tasks to accomplish here in the README until I make enough progress to turn this bad boy into a solid, stand-alone, personal package.
+
+- schema structure creator functions? Oooooo.
+- standardize variable name usage.
+- make function names more evocative, with standard verbs and structure.
+- handle multiple arguments to `openize`
+- ERROR HANDLE ANYTHING AT ALL
+- survey response summary statistic functions. (i.e., response rate, responses per question.)
+- quick visuals to compare response X by response Y (group_by, depending on x and y var_type)
+- ~~change structure to package format, for quick reloads and better workflow~~
+- clarify goals of package and function
+- comment stuff
